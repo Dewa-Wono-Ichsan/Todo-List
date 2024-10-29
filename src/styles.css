@@ -1,0 +1,17 @@
+.container{
+    display: grid;
+    grid-template: repeat(2,400px)/repeat(2,300px);
+}
+
+.top{
+    background-color: rgb(227, 154, 154);
+}
+
+.left{
+    background-color: antiquewhite;
+    grid-row: 1/3;
+}
+
+.content{
+    background-color: aqua;
+}
