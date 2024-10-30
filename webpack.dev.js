@@ -12,6 +12,7 @@ const { merge } = require('webpack-merge');
    devServer: {
 
      static: './dist',
+     watchFiles: ["./src/template.html"],
 
    },
 
