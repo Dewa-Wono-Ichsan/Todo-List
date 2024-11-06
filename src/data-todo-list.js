@@ -7,4 +7,7 @@ function list(title, description, dueDate, priority, notes, checklist){
     this.checklist = checklist
 }
 
+let myList = []
+
 export default list
+export {myList}
