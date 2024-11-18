@@ -1,5 +1,6 @@
 import './styles.css'
 import toDoListData, {myList, addList} from './data-todo-list.js'
+import remove from './remove-todo-list.js'
 
 
 addList(
@@ -44,16 +45,5 @@ addList(
 )
 
 console.log(myList)
-
-// function takeEl(arr, numStart, numMid){
-//     const arr1 = arr.slice(numStart, numMid)
-//     const arr2 = arr.slice(numMid + 1)
-//     const arrResult = arr1.concat(arr2)
-
-//     return arrResult
-// }
-// let test = myList.slice(0,2)
-// let test2 = myList.slice(3)
-// let testResult = test.concat(test2)
-
-// console.log([test, test2, testResult, takeEl(myList, 0, 2)])
+// remove(myList, 1)
+// remove(myList, 2)
