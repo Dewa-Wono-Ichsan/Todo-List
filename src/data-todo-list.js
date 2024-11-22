@@ -1,3 +1,5 @@
+import { valueProject } from "./dom"
+
 function list(title, description, dueDate, priority, notes, checklist){
     this.title = title
     this.description = description
@@ -14,7 +16,7 @@ function addList(
     priority,
     notes,
     checklist){
-        myList.push(
+        myList.notInProject.push(
             new list(
                 title,
                 description,
@@ -26,7 +28,16 @@ function addList(
         )
     }
 
-const myList = []
+function addProject(){
+    myList.project[`${valueProject.value}`] = []
+    console.warn(myList)
+    valueProject.value = ''
+}
+    
+const myList = {
+    notInProject: [],
+    project: {},
+}
 
 export default list
-export {myList, addList}
+export {myList, addList, addProject}

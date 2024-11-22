@@ -1,6 +1,7 @@
 import './styles.css'
-import toDoListData, {myList, addList} from './data-todo-list.js'
+import toDoListData, {myList, addList, addProject} from './data-todo-list.js'
 import remove from './remove-todo-list.js'
+import {addProjectBtn, valueProject} from './dom.js'
 
 
 addList(
@@ -47,3 +48,5 @@ addList(
 console.log(myList)
 // remove(myList, 1)
 // remove(myList, 2)
+
+addProjectBtn.addEventListener('click', addProject)
