@@ -1,4 +1,4 @@
-import { valueProject } from "./dom"
+import { valueProject, displayProject, } from "./dom.js"
 
 function list(title, description, dueDate, priority, notes, checklist){
     this.title = title
@@ -31,6 +31,7 @@ function addList(
 function addProject(){
     myList.project[`${valueProject.value}`] = []
     console.warn(myList)
+    displayProject(myList)
     valueProject.value = ''
 }
     
