@@ -7,7 +7,36 @@
 </head>
 <body>
     <div class="container">
-        <div class="top"></div>
+        <div class="top">
+            <div class="heading">list form</div>
+            <form method="post" target="#">
+                <div class="list-part-title">
+                    <label for="list-title">title</label>
+                    <input type="text" id="list-title" name="list-title">
+                </div>
+                <div class="list-part-description">
+                    <label for="list-description">description</label>
+                    <input type="text" id="list-description" name="list-description">
+                </div>
+                <div class="list-part-dueDate">
+                    <label for="list-dueDate">Due Date</label>
+                    <input type="date" id="list-dueDate" name="list-dueDate">
+                </div>
+                <div class="list-part-priority">
+                    <label for="list-priority">Priority</label>
+                    <input type="text" id="list-priority" name="list-priority">
+                </div>
+                <div class="list-part-notes">
+                    <label for="list-notes">Notes</label>
+                    <textarea id="list-notes" name="list-notes" rows="15" cols="25">Do not forget to pay monthly bill.</textarea>
+                </div>
+                <div class="list-part-checklist">
+                    <label for="list-checklist">Progress</label>
+                    <input type="checkbox" id="list-checklist" name="list-checklist" value="done">
+                </div>
+                <button id="add-list" type="submit">Submit</button>
+            </form>
+        </div>
         <div class="left">
             <div class="container-nav-sidebar">
                 <label for="project-name">project name</label>

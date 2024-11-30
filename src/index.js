@@ -45,7 +45,7 @@ addList(
     true,
 )
 
-console.log(myList)
+// console.log(myList)
 // remove(myList, 1)
 // remove(myList, 2)
 
