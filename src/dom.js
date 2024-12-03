@@ -33,4 +33,6 @@ function displayProject(arr){
     containerProject.appendChild(div)
 }
 
-export{addProjectBtn, valueProject, containerProject, displayProject}
+const containerList = document.querySelector('.container-list')
+
+export{addProjectBtn, valueProject, containerProject, displayProject, containerList}
