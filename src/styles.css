@@ -15,3 +15,9 @@
 .content{
     background-color: aqua;
 }
+
+.container-list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

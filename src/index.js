@@ -1,7 +1,7 @@
 import './styles.css'
 import toDoListData, {myList, addList, addProject} from './data-todo-list.js'
 import remove from './remove-todo-list.js'
-import {addProjectBtn, valueProject, containerList} from './dom.js'
+import {addProjectBtn, valueProject, containerList, displayList} from './dom.js'
 
 
 addList(
@@ -47,47 +47,7 @@ addList(
 
 console.log(myList)
 
-for (let index = 0; index < myList.notInProject.length; index++) {
-
-    const div = document.createElement('div')
-    div.classList.toggle('container-todo-list')
-    containerList.appendChild(div)
-}
-
-for (let index = 0; index < document.querySelectorAll('.container-todo-list').length; index++) {
-    const div = document.querySelector(`.container-todo-list:nth-child(${index + 1})`)
-    
-    const titleDiv = document.createElement('div')
-    titleDiv.classList.toggle('title')
-    titleDiv.textContent = myList.notInProject.at(index).title
-    div.appendChild(titleDiv)
-
-    const descriptionDiv = document.createElement('div')
-    descriptionDiv.classList.toggle('description')
-    descriptionDiv.textContent = myList.notInProject.at(index).description
-    div.appendChild(descriptionDiv)
-
-    const dueDateDiv = document.createElement('div')
-    dueDateDiv.classList.toggle('dueDate')
-    dueDateDiv.textContent = myList.notInProject.at(index).dueDate
-    div.appendChild(dueDateDiv)
-
-    const priorityDiv = document.createElement('div')
-    priorityDiv.classList.toggle('priority')
-    priorityDiv.textContent = myList.notInProject.at(index).priority
-    div.appendChild(priorityDiv)
-
-    const notesDiv = document.createElement('div')
-    notesDiv.classList.toggle('notes')
-    notesDiv.textContent = myList.notInProject.at(index).notes
-    div.appendChild(notesDiv)
-
-    const checklistDiv = document.createElement('div')
-    checklistDiv.classList.toggle('checklist')
-    checklistDiv.textContent = myList.notInProject.at(index).checklist
-    div.appendChild(checklistDiv)
-}
-
+displayList(myList.notInProject)
 
 // remove(myList, 1)
 // remove(myList, 2)
