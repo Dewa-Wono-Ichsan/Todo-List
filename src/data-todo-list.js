@@ -28,9 +28,29 @@ function addList(
         )
     }
 
+function addProjectList(
+    title,
+    description,
+    dueDate,
+    priority,
+    notes,
+    checklist,
+    nav
+){
+    myList.project[nav].push(
+        new list(
+            title,
+            description,
+            dueDate,
+            priority,
+            notes,
+            checklist,)
+    )
+
+}
+
 function addProject(){
     myList.project[`${valueProject.value}`] = []
-    console.warn(myList)
     displayProject(myList)
     valueProject.value = ''
 }
@@ -41,4 +61,4 @@ const myList = {
 }
 
 export default list
-export {myList, addList, addProject}
+export {myList, addList, addProject, addProjectList}

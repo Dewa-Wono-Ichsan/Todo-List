@@ -1,4 +1,4 @@
-import { myList, addList } from "./data-todo-list"
+import list, { myList, addList, addProjectList } from "./data-todo-list"
 
 const addProjectBtn = document.querySelector('button.add-project')
 const valueProject = document.querySelector('input#project-name')
@@ -21,7 +21,7 @@ submitList.addEventListener('click', function(){
         notes.textContent,
         checkList.checked
     )
-    console.log(myList);
+    console.log(myList)
     event.preventDefault()
 })
 
@@ -77,5 +77,55 @@ function displayList(arr){
         div.appendChild(checklistDiv)
     }
 }
+
+const headingFormList = document.querySelector('.top > h2')
+
+const changeNavList = document.querySelector('.left')
+changeNavList.addEventListener('click', function(e){
+
+    switch (e.target) {
+        case document.querySelector('.container-not-in-project'):
+            headingFormList.textContent = `List Form ${e.target.textContent}`
+            break;
+    
+        default:
+            break;
+    }
+})
+
+const changeNavList2 = document.querySelector('.container-project')
+changeNavList2.addEventListener('click', function(e){
+
+    const selectedNav = e.target.textContent
+    headingFormList.textContent = `List Form ${e.target.textContent}`
+    const submitButton = document.querySelector('#add-list')
+    submitButton.remove()
+    
+    const createSubmit = document.createElement('button')
+    createSubmit.setAttribute('id', 'add-list')
+    createSubmit.setAttribute('type', 'submit')
+    createSubmit.textContent = 'submit'
+    
+    createSubmit.addEventListener('click', function(e){
+
+        addProjectList(
+            title.value,
+            description.value,
+            dueDate.value,
+            priority.value,
+            notes.value,
+            checkList.value,
+            selectedNav
+        )
+
+        console.log(myList)
+        
+
+        e.preventDefault()
+    })
+
+    const form = document.querySelector('.top > form')
+    form.appendChild(createSubmit)
+})
 
 export{addProjectBtn, valueProject, containerProject, displayProject, containerList, displayList}
