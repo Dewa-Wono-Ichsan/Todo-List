@@ -80,17 +80,37 @@ function displayList(arr){
 
 const headingFormList = document.querySelector('.top > h2')
 
-const changeNavList = document.querySelector('.left')
-changeNavList.addEventListener('click', function(e){
+const containerNotInProject = document.querySelector('.container-not-in-project')
+containerNotInProject.addEventListener('click',function(e){
 
-    switch (e.target) {
-        case document.querySelector('.container-not-in-project'):
-            headingFormList.textContent = `List Form ${e.target.textContent}`
-            break;
+    headingFormList.textContent = `List Form ${e.target.textContent}`
+    const submitButton = document.querySelector('#add-list')
+    submitButton.remove()
     
-        default:
-            break;
-    }
+    const createSubmit = document.createElement('button')
+    createSubmit.setAttribute('id', 'add-list')
+    createSubmit.setAttribute('type', 'submit')
+    createSubmit.textContent = 'submit'
+    
+    createSubmit.addEventListener('click', function(e){
+
+        addList(
+            title.value,
+            description.value,
+            dueDate.value,
+            priority.value,
+            notes.value,
+            checkList.value,
+        )
+
+        console.log(myList)
+        
+
+        e.preventDefault()
+    })
+
+    const form = document.querySelector('.top > form')
+    form.appendChild(createSubmit)
 })
 
 const changeNavList2 = document.querySelector('.container-project')
