@@ -1,6 +1,6 @@
 import './styles.css'
 import toDoListData, {myList, addList, addProject} from './data-todo-list.js'
-import remove from './remove-todo-list.js'
+import remove, {delList} from './remove-todo-list.js'
 import {addProjectBtn, valueProject, containerList, displayList} from './dom.js'
 
 
@@ -49,7 +49,6 @@ console.log(myList)
 
 displayList(myList.notInProject)
 
-// remove(myList, 1)
-// remove(myList, 2)
+delList(myList.notInProject)
 
 addProjectBtn.addEventListener('click', addProject)

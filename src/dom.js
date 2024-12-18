@@ -1,4 +1,5 @@
-import list, { myList, addList, addProjectList } from "./data-todo-list"
+import list, { myList, addList, addProjectList } from "./data-todo-list.js"
+import remove from "./remove-todo-list.js"
 
 const addProjectBtn = document.querySelector('button.add-project')
 const valueProject = document.querySelector('input#project-name')
@@ -148,4 +149,83 @@ changeNavList2.addEventListener('click', function(e){
     form.appendChild(createSubmit)
 })
 
-export{addProjectBtn, valueProject, containerProject, displayProject, containerList, displayList}
+function displayListAlter(arr){
+    const content = document.querySelector('.content')
+    const divContainerList = document.createElement('div')
+    divContainerList.classList.toggle('container-list')
+    
+    content.appendChild(divContainerList)
+
+    const newContainerList = document.querySelector('.container-list')
+    
+    for (let index = 0; index < arr.length; index++) {
+        const divContainerTodoList = document.createElement('div')
+        divContainerTodoList.classList.toggle('container-todo-list')
+
+        newContainerList.appendChild(divContainerTodoList)
+    }
+
+    for (let index = 0; index < arr.length; index++) {
+
+        const div = document.querySelector(`.container-todo-list:nth-child(${index + 1})`)
+        
+        const divTitle = document.createElement('div')
+        divTitle.classList.toggle('title')
+        divTitle.textContent = `title: ${arr[index].title}`
+
+        div.appendChild(divTitle)
+
+        const divDescription = document.createElement('div')
+        divDescription.classList.toggle('description')
+        divDescription.textContent = `description: ${arr[index].description}`
+
+        div.appendChild(divDescription)
+
+        const divDueDate = document.createElement('div')
+        divDueDate.classList.toggle('dueDate')
+        divDueDate.textContent = `dueDate: ${arr[index].dueDate}`
+
+        div.appendChild(divDueDate)
+
+        const divPriority = document.createElement('div')
+        divPriority.classList.toggle('priority')
+        divPriority.textContent = `priority: ${arr[index].priority}`
+
+        div.appendChild(divPriority)
+
+        const divNotes = document.createElement('div')
+        divNotes.classList.toggle('notes')
+        divNotes.textContent = `notes: ${arr[index].notes}`
+
+        div.appendChild(divNotes)
+
+        const divChecklist = document.createElement('div')
+        divChecklist.classList.toggle('checklist')
+        divChecklist.textContent = `checklist: ${arr[index].checklist}`
+
+        div.appendChild(divChecklist)
+
+        const delBtn = document.createElement('button')
+        delBtn.classList.toggle('delete')
+        delBtn.textContent = 'delete'
+        delBtn.addEventListener('click', function(){
+            remove(arr, index)
+            console.log(myList)
+            divContainerList.remove()
+            displayListAlter(arr)
+        })
+
+        div.appendChild(delBtn)
+
+    }
+}
+
+export{
+    addProjectBtn,
+    valueProject,
+    containerProject,
+    displayProject,
+    containerList,
+    displayList,
+    displayListAlter,
+}
