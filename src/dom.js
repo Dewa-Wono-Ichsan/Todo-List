@@ -101,7 +101,7 @@ containerNotInProject.addEventListener('click',function(e){
             dueDate.value,
             priority.value,
             notes.value,
-            checkList.value,
+            checkList.checked,
         )
 
         console.log(myList)
@@ -135,7 +135,7 @@ changeNavList2.addEventListener('click', function(e){
             dueDate.value,
             priority.value,
             notes.value,
-            checkList.value,
+            checkList.checked,
             selectedNav
         )
 
