@@ -65,44 +65,6 @@ function displayList(arr){
         div.appendChild(dueDateDiv)
 
         expandBtn(div, index, myList.notInProject)
-
-        // const expandButton = document.createElement('button')
-        // expandButton.classList.toggle('expand')
-        // expandButton.textContent = 'expand'
-        // div.appendChild(expandButton)
-        // expandButton.addEventListener('click', function(){
-
-        //     const containerDiv = document.querySelector(`.container-todo-list:nth-child(${index+1})`)
-        //     const description = document.querySelector(`.container-todo-list:nth-child(${index+1})>.description`)
-        //     const expand = document.querySelector(`.container-todo-list:nth-child(${index+1})>.expand`)
-        //     const del = document.querySelector(`.container-todo-list:nth-child(${index+1})>.delete`)
-
-        //     const delBtn = document.createElement('button')
-        //     delBtn.classList.toggle('delete')
-        //     delBtn.textContent = 'delete'
-        //     delBtn.addEventListener('click', function(){
-        //         const divContainerList = document.querySelector('.container-list')
-        //         remove(myList.notInProject, index)
-        //         console.log(myList)
-        //         divContainerList.remove()
-        //     })
-
-        //     if(description !== null){
-        //         description.remove()
-        //         return
-        //     }
-        //     const descriptionDiv = document.createElement('div')
-        //     descriptionDiv.classList.toggle('description')
-        //     descriptionDiv.textContent = `description ${arr.at(index).description}`
-
-        //     del.remove()
-        //     expand.remove()
-
-        //     containerDiv.appendChild(descriptionDiv)
-        //     containerDiv.appendChild(expandButton)
-        //     containerDiv.appendChild(delBtn)
-
-        // })
     }
 }
 
@@ -281,47 +243,47 @@ function delContent(){
 function expandBtn(todoList, arrIndex, dataList){
 
     const expandButton = document.createElement('button')
-            expandButton.classList.toggle('expand')
-            expandButton.textContent = 'expand'
+    expandButton.classList.toggle('expand')
+    expandButton.textContent = 'expand'
 
-            todoList.appendChild(expandButton)
+    todoList.appendChild(expandButton)
 
-            expandButton.addEventListener('click', function(){
+    expandButton.addEventListener('click', function(){
     
-                const containerDiv = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})`)
-                const description = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.description`)
-                const expand = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.expand`)
-                const del = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.delete`)
+        const containerDiv = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})`)
+        const description = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.description`)
+        const expand = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.expand`)
+        const del = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.delete`)
     
-                const delBtn = document.createElement('button')
-                delBtn.classList.toggle('delete')
-                delBtn.textContent = 'delete'
-                delBtn.addEventListener('click', function(){
-                    const divContainerList = document.querySelector('.container-list')
-                    remove(dataList, arrIndex)
-                    console.log(myList)
-                    divContainerList.remove()
-                })
-    
-                if(description !== null){
-                    expand.textContent = 'expand'
-                    description.remove()
-                    return null
-                }
-                expand.textContent = 'hide'
-
-                const descriptionDiv = document.createElement('div')
-                descriptionDiv.classList.toggle('description')
-                descriptionDiv.textContent = `description: ${dataList.at(arrIndex).description}`
-
-                expand.remove()
-                del.remove()
-
-                containerDiv.appendChild(descriptionDiv)
-                containerDiv.appendChild(expandButton)
-                containerDiv.appendChild(delBtn)
-    
+        const delBtn = document.createElement('button')
+        delBtn.classList.toggle('delete')
+        delBtn.textContent = 'delete'
+        delBtn.addEventListener('click', function(){
+            const divContainerList = document.querySelector('.container-list')
+            remove(dataList, arrIndex)
+            console.log(myList)
+            divContainerList.remove()
             })
+    
+        if(description !== null){
+            expand.textContent = 'expand'
+            description.remove()
+            return null
+            }
+                
+        expand.textContent = 'hide'
+
+        const descriptionDiv = document.createElement('div')
+        descriptionDiv.classList.toggle('description')
+        descriptionDiv.textContent = `description: ${dataList.at(arrIndex).description}`
+
+        expand.remove()
+        del.remove()
+
+        containerDiv.appendChild(descriptionDiv)
+        containerDiv.appendChild(expandButton)
+        containerDiv.appendChild(delBtn)
+        })
 }
 
 export{
