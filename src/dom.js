@@ -254,6 +254,7 @@ function expandBtn(todoList, arrIndex, dataList){
         const description = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.description`)
         const expand = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.expand`)
         const del = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.delete`)
+        const edit = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.edit`)
     
         const delBtn = document.createElement('button')
         delBtn.classList.toggle('delete')
@@ -264,10 +265,15 @@ function expandBtn(todoList, arrIndex, dataList){
             console.log(myList)
             divContainerList.remove()
             })
+        
+        const editBtn = document.createElement('button')
+        editBtn.classList.toggle('edit')
+        editBtn.textContent = 'edit'
     
         if(description !== null){
             expand.textContent = 'expand'
             description.remove()
+            edit.remove()
             return null
             }
                 
@@ -283,6 +289,7 @@ function expandBtn(todoList, arrIndex, dataList){
         containerDiv.appendChild(descriptionDiv)
         containerDiv.appendChild(expandButton)
         containerDiv.appendChild(delBtn)
+        containerDiv.appendChild(editBtn)
         })
 }
 
