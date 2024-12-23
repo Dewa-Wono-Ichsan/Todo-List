@@ -184,35 +184,11 @@ function displayListAlter(arr){
         
             div.appendChild(divTitle)
         
-            const divDescription = document.createElement('div')
-            divDescription.classList.toggle('description')
-            divDescription.textContent = `description: ${arr[index].description}`
-        
-            div.appendChild(divDescription)
-        
             const divDueDate = document.createElement('div')
             divDueDate.classList.toggle('dueDate')
             divDueDate.textContent = `dueDate: ${arr[index].dueDate}`
         
             div.appendChild(divDueDate)
-        
-            const divPriority = document.createElement('div')
-            divPriority.classList.toggle('priority')
-            divPriority.textContent = `priority: ${arr[index].priority}`
-        
-            div.appendChild(divPriority)
-        
-            const divNotes = document.createElement('div')
-            divNotes.classList.toggle('notes')
-            divNotes.textContent = `notes: ${arr[index].notes}`
-        
-            div.appendChild(divNotes)
-        
-            const divChecklist = document.createElement('div')
-            divChecklist.classList.toggle('checklist')
-            divChecklist.textContent = `checklist: ${arr[index].checklist}`
-        
-            div.appendChild(divChecklist)
         
             const delBtn = document.createElement('button')
             delBtn.classList.toggle('delete')
@@ -224,8 +200,9 @@ function displayListAlter(arr){
                 displayListAlter(arr)
             })
         
+            expandBtn(div, index, arr)
+
             div.appendChild(delBtn)
-        
         }
 
     }
