@@ -316,7 +316,9 @@ function expandBtn(todoList, arrIndex, dataList){
 
             const inputChecklist = document.createElement('input')
             inputChecklist.setAttribute('type', 'checkbox')
-            inputChecklist.checked = `${dataList.at(arrIndex).checklist}`
+            if(dataList.at(arrIndex).checklist === true){
+                inputChecklist.setAttribute('checked', '')
+            }
             
             const changeBtn = document.createElement('button')
             changeBtn.classList.toggle('change-todo-list')
