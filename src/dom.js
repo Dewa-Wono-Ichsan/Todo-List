@@ -264,11 +264,46 @@ function expandBtn(todoList, arrIndex, dataList){
             remove(dataList, arrIndex)
             console.log(myList)
             divContainerList.remove()
+            displayListAlter(dataList)
             })
         
         const editBtn = document.createElement('button')
         editBtn.classList.toggle('edit')
         editBtn.textContent = 'edit'
+        editBtn.addEventListener('click', function(){
+            const form = document.createElement('form')
+
+            const sectionTitle = document.createElement('div')
+            sectionTitle.classList.toggle('title')
+
+            const labelTitle = document.createElement('label')
+            labelTitle.textContent = 'title'
+            
+            const inputTitle = document.createElement('input')
+            inputTitle.setAttribute('value', `${dataList.at(arrIndex).title}`)
+            
+            const changeBtn = document.createElement('button')
+            changeBtn.classList.toggle('change-todo-list')
+            changeBtn.textContent = 'change'
+            changeBtn.addEventListener('click', function(e){
+                const titleDisplay = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.title`)
+                dataList.at(arrIndex).title = inputTitle.value
+                console.log(myList)
+                titleDisplay.textContent = `title: ${dataList.at(arrIndex).title}`
+                e.preventDefault()
+                })
+            
+            const formTodoList = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>form`)
+            if(formTodoList !== null){
+                formTodoList.remove()
+                return null
+            }
+            containerDiv.appendChild(form)
+            form.appendChild(sectionTitle)
+            sectionTitle.appendChild(labelTitle)
+            sectionTitle.appendChild(inputTitle)
+            form.appendChild(changeBtn)
+            })
     
         if(description !== null){
             expand.textContent = 'expand'
