@@ -252,9 +252,13 @@ function expandBtn(todoList, arrIndex, dataList){
     
         const containerDiv = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})`)
         const description = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.description`)
+        const priority = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.priority`)
+        const notes = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.notes`)
+        const checklist = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.checklist`)
         const expand = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.expand`)
         const del = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.delete`)
         const edit = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.edit`)
+        const form = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>form`)
     
         const delBtn = document.createElement('button')
         delBtn.classList.toggle('delete')
@@ -271,6 +275,13 @@ function expandBtn(todoList, arrIndex, dataList){
         editBtn.classList.toggle('edit')
         editBtn.textContent = 'edit'
         editBtn.addEventListener('click', function(){
+
+            if(editBtn.textContent === 'edit'){
+                editBtn.textContent = 'close edit'
+            } else {
+                editBtn.textContent = 'edit'
+            }
+
             const form = document.createElement('form')
 
             const sectionTitle = document.createElement('div')
@@ -281,15 +292,86 @@ function expandBtn(todoList, arrIndex, dataList){
             
             const inputTitle = document.createElement('input')
             inputTitle.setAttribute('value', `${dataList.at(arrIndex).title}`)
+
+            const sectionDuedate = document.createElement('div')
+            sectionDuedate.classList.toggle('dueDate')
+
+            const labelDuedate = document.createElement('label')
+            labelDuedate.textContent = 'dueDate'
+            
+            const inputDuedate = document.createElement('input')
+            inputDuedate.setAttribute('value', `${dataList.at(arrIndex).dueDate}`)
+            inputDuedate.setAttribute('type', 'date')
+
+            const sectionDescription = document.createElement('div')
+            sectionDescription.classList.toggle('description')
+
+            const labelDescription = document.createElement('label')
+            labelDescription.textContent = 'description'
+
+            const inputDescription = document.createElement('input')
+            inputDescription.setAttribute('value', `${dataList.at(arrIndex).description}`)
+
+            const sectionPriority = document.createElement('div')
+            sectionPriority.classList.toggle('priority')
+
+            const labelPriority = document.createElement('label')
+            labelPriority.textContent = 'priority'
+
+            const inputPriority = document.createElement('input')
+            inputPriority.setAttribute('value', `${dataList.at(arrIndex).priority}`)
+
+            const sectionNotes = document.createElement('div')
+            sectionNotes.classList.toggle('notes')
+
+            const labelNotes = document.createElement('label')
+            labelNotes.textContent = 'notes'
+
+            const inputNotes = document.createElement('textarea')
+            inputNotes.setAttribute('rows', 10)
+            inputNotes.textContent = `${dataList.at(arrIndex).notes}`
+
+            const sectionChecklist = document.createElement('div')
+            sectionChecklist.classList.toggle('checklist')
+
+            const labelChecklist = document.createElement('label')
+            labelChecklist.textContent = 'progress'
+
+            const inputChecklist = document.createElement('input')
+            inputChecklist.setAttribute('type', 'checkbox')
+            inputChecklist.checked = `${dataList.at(arrIndex).checklist}`
             
             const changeBtn = document.createElement('button')
             changeBtn.classList.toggle('change-todo-list')
             changeBtn.textContent = 'change'
             changeBtn.addEventListener('click', function(e){
-                const titleDisplay = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1})>.title`)
+                const titleDisplay = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1}) > .title`)
+                const dueDateDisplay = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1}) > .dueDate`)
+                const descriptionDisplay = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1}) > .description`)
+                const priorityDisplay = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1}) > .priority`)
+                const notesDisplay = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1}) > .notes`)
+                const checklistDisplay = document.querySelector(`.container-todo-list:nth-child(${arrIndex+1}) > .checklist`)
+
                 dataList.at(arrIndex).title = inputTitle.value
+                dataList.at(arrIndex).dueDate = inputDuedate.value
+                dataList.at(arrIndex).description = inputDescription.value
+                dataList.at(arrIndex).priority = inputPriority.value
+                dataList.at(arrIndex).notes = inputNotes.value
+                dataList.at(arrIndex).checklist = inputChecklist.checked
+
                 console.log(myList)
+
                 titleDisplay.textContent = `title: ${dataList.at(arrIndex).title}`
+                dueDateDisplay.textContent = `dueDate: ${dataList.at(arrIndex).dueDate}`
+                descriptionDisplay.textContent = `description: ${dataList.at(arrIndex).description}`
+                priorityDisplay.textContent = `priority: ${dataList.at(arrIndex).priority}`
+                notesDisplay.textContent = `notes: ${dataList.at(arrIndex).notes}`
+                if(inputChecklist.checked === true){
+                    checklistDisplay.textContent = 'progress: done'
+                }else{
+                    checklistDisplay.textContent = 'progress: pending'
+                }
+
                 e.preventDefault()
                 })
             
@@ -298,17 +380,46 @@ function expandBtn(todoList, arrIndex, dataList){
                 formTodoList.remove()
                 return null
             }
+
             containerDiv.appendChild(form)
+
             form.appendChild(sectionTitle)
             sectionTitle.appendChild(labelTitle)
             sectionTitle.appendChild(inputTitle)
+
+            form.appendChild(sectionDuedate)
+            sectionDuedate.appendChild(labelDuedate)
+            sectionDuedate.appendChild(inputDuedate)
+
+            form.appendChild(sectionDescription)
+            sectionDescription.appendChild(labelDescription)
+            sectionDescription.appendChild(inputDescription)
+
+            form.appendChild(sectionPriority)
+            sectionPriority.appendChild(labelPriority)
+            sectionPriority.appendChild(inputPriority)
+
+            form.appendChild(sectionNotes)
+            sectionNotes.appendChild(labelNotes)
+            sectionNotes.appendChild(inputNotes)
+
+            form.appendChild(sectionChecklist)
+            sectionChecklist.appendChild(labelChecklist)
+            sectionChecklist.appendChild(inputChecklist)
+
             form.appendChild(changeBtn)
             })
     
         if(description !== null){
             expand.textContent = 'expand'
             description.remove()
+            priority.remove()
+            notes.remove()
+            checklist.remove()
             edit.remove()
+            if(form !== null){
+                form.remove()
+            }
             return null
             }
                 
@@ -318,10 +429,29 @@ function expandBtn(todoList, arrIndex, dataList){
         descriptionDiv.classList.toggle('description')
         descriptionDiv.textContent = `description: ${dataList.at(arrIndex).description}`
 
+        const priorityDiv = document.createElement('div')
+        priorityDiv.classList.toggle('priority')
+        priorityDiv.textContent = `priority: ${dataList.at(arrIndex).priority}`
+
+        const notesDiv = document.createElement('div')
+        notesDiv.classList.toggle('notes')
+        notesDiv.textContent = `notes: ${dataList.at(arrIndex).notes}`
+
+        const checklistDiv = document.createElement('div')
+        checklistDiv.classList.toggle('checklist')
+        if(dataList.at(arrIndex).checklist === true){
+            checklistDiv.textContent = 'progress: done'
+        }else{
+            checklistDiv.textContent = 'progress: pending'
+        }
+
         expand.remove()
         del.remove()
 
         containerDiv.appendChild(descriptionDiv)
+        containerDiv.appendChild(priorityDiv)
+        containerDiv.appendChild(notesDiv)
+        containerDiv.appendChild(checklistDiv)
         containerDiv.appendChild(expandButton)
         containerDiv.appendChild(delBtn)
         containerDiv.appendChild(editBtn)
