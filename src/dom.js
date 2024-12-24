@@ -39,6 +39,9 @@ function displayProject(obj){
     const arrKey = Object.keys(obj.project)
 
     if(arrKey.length === 0){
+        if(document.querySelector('.container-project .project') !== null){
+            document.querySelector('.container-project .project').remove()
+        }
         return null
     }
     const project = Array.from(document.querySelectorAll('.container-project  .project'))
@@ -57,6 +60,14 @@ function displayProject(obj){
         containerProject.appendChild(div)
     }
 }
+
+const deleteProject = document.querySelector('.left .delete-project')
+deleteProject.addEventListener('click', function(){
+    const arrProject = Object.keys(myList.project)
+    delete myList.project[`${arrProject.at(-1)}`]
+    setTodoListData()
+    displayProject(myList)
+})
 
 const containerList = document.querySelector('.container-list')
 
