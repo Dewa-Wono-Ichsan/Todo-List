@@ -1,5 +1,5 @@
 import './styles.css'
-import toDoListData, {myList, addList, addProject} from './data-todo-list.js'
+import toDoListData, {myList, addList, addProject, getTodoListData} from './data-todo-list.js'
 import remove, {delList} from './remove-todo-list.js'
 import {addProjectBtn, valueProject, containerList, displayList, displayListAlter} from './dom.js'
 
@@ -44,6 +44,8 @@ addList(
     'Check mop and broom',
     true,
 )
+
+getTodoListData()
 
 console.log(myList)
 

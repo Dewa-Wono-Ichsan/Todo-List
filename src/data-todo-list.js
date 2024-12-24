@@ -60,5 +60,17 @@ const myList = {
     project: {},
 }
 
+function setTodoListData(){
+    localStorage.setItem('local save', JSON.stringify(myList))
+}
+function getTodoListData(){
+    const data = JSON.parse(localStorage.getItem('local save'))
+    if(data === null){
+        return null
+    }
+    myList.notInProject = data.notInProject
+    myList.project = data.project
+}
+
 export default list
-export {myList, addList, addProject, addProjectList}
+export {myList, addList, addProject, addProjectList, getTodoListData, setTodoListData}
