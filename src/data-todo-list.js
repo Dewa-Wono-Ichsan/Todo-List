@@ -50,8 +50,12 @@ function addProjectList(
 }
 
 function addProject(){
+    if(valueProject.value === ''){
+        return null
+    }
     myList.project[`${valueProject.value}`] = []
     displayProject(myList)
+    setTodoListData()
     valueProject.value = ''
 }
     

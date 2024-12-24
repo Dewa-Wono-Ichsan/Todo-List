@@ -1,4 +1,4 @@
-import list, { myList, addList, addProjectList } from "./data-todo-list.js"
+import list, { myList, addList, addProjectList,setTodoListData } from "./data-todo-list.js"
 import remove from "./remove-todo-list.js"
 
 const addProjectBtn = document.querySelector('button.add-project')
@@ -26,6 +26,7 @@ submitList.addEventListener('click', function(e){
         checkList.checked
     )
     console.log(myList)
+    setTodoListData()
 
     delContent()
     displayListAlter(arrData)
@@ -33,12 +34,28 @@ submitList.addEventListener('click', function(e){
     e.preventDefault()
 })
 
-let count = 0
-function displayProject(arr){
-    const div = document.createElement('div')
-    div.classList.toggle('project')
-    div.textContent = `${Object.keys(arr.project).at(count++)}`
-    containerProject.appendChild(div)
+
+function displayProject(obj){
+    const arrKey = Object.keys(obj.project)
+
+    if(arrKey.length === 0){
+        return null
+    }
+    const project = Array.from(document.querySelectorAll('.container-project  .project'))
+
+
+    for (let index = 0; index < project.length; index++) {
+        const element = project[index]
+        element.remove()
+    }
+
+    for (let index = 0; index < arrKey.length; index++) {
+        
+        const div = document.createElement('div')
+        div.classList.toggle('project')
+        div.textContent = `${arrKey.at(index)}`
+        containerProject.appendChild(div)
+    }
 }
 
 const containerList = document.querySelector('.container-list')
@@ -96,6 +113,7 @@ containerNotInProject.addEventListener('click',function(e){
         )
 
         console.log(myList)
+        setTodoListData()
         
         delContent()
         displayListAlter(arrData)
@@ -138,6 +156,7 @@ changeNavList2.addEventListener('click', function(e){
         )
 
         console.log(myList)
+        setTodoListData()
 
         delContent()
         displayListAlter(arrData)
@@ -196,6 +215,8 @@ function displayListAlter(arr){
             delBtn.addEventListener('click', function(){
                 remove(arr, index)
                 console.log(myList)
+                setTodoListData()
+
                 divContainerList.remove()
                 displayListAlter(arr)
             })
@@ -244,6 +265,8 @@ function expandBtn(todoList, arrIndex, dataList){
             const divContainerList = document.querySelector('.container-list')
             remove(dataList, arrIndex)
             console.log(myList)
+            setTodoListData()
+
             divContainerList.remove()
             displayListAlter(dataList)
             })
@@ -339,6 +362,7 @@ function expandBtn(todoList, arrIndex, dataList){
                 dataList.at(arrIndex).checklist = inputChecklist.checked
 
                 console.log(myList)
+                setTodoListData()
 
                 titleDisplay.textContent = `title: ${dataList.at(arrIndex).title}`
                 dueDateDisplay.textContent = `dueDate: ${dataList.at(arrIndex).dueDate}`
