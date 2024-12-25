@@ -235,6 +235,12 @@ function displayListAlter(arr){
             expandBtn(div, index, arr)
 
             div.appendChild(delBtn)
+
+            if(arr[index].checklist === true){
+                div.style.backgroundColor = '#D6D6D6'
+            } else if(arr[index].checklist === false){
+                div.style.backgroundColor = 'white'
+            }
         }
 
     }
@@ -382,8 +388,10 @@ function expandBtn(todoList, arrIndex, dataList){
                 notesDisplay.textContent = `notes: ${dataList.at(arrIndex).notes}`
                 if(inputChecklist.checked === true){
                     checklistDisplay.textContent = 'progress: done'
+                    todoList.style.backgroundColor = '#D6D6D6'
                 }else{
                     checklistDisplay.textContent = 'progress: pending'
+                    todoList.style.backgroundColor = 'white'
                 }
 
                 e.preventDefault()
